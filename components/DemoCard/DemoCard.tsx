@@ -11,7 +11,7 @@ import { useQuery } from "react-query";
 import { useRouter } from "next/router";
 import axiosInstance from "@/api/axiosInstance";
 import { endpoints } from "@/api/endpoints";
-import { keyfactorfunc } from "@/api/functions/allfunc";
+import { keyfactorfunc, keywordIDfunc } from "@/api/functions/allfunc";
 import { TabDaum } from "@/interface/keyfactortabinter";
 import { KeyFactorDaum } from "@/interface/keyfactorinter";
 
@@ -184,21 +184,20 @@ export default function DemoCard() {
 
   console.log('id',slugID);
   
-  const [homeId, setHomeId] = useState(slugID)
-  const { data: keytab } = useQuery({
-    queryKey: ['kt', { homeId }],
-    queryFn: async () => {
-      const dt = await axiosInstance.get<TabDaum>(
-        endpoints.pageEnd.keyfactorIdend(`${homeId}`)
-      )
-      console.log('resp', dt)
-      return dt.data;
-    }
+  const [homeId, setHomeId] = useState("")
+  console.log("id",homeId);
 
+  
+  const { data: keytab } = useQuery({
+    queryKey: ['kt', homeId],
+    queryFn: ()=>keywordIDfunc(`${homeId}`)
   })
 
+  console.log('singleData', keytab);
+  
+
   // console.log("key tab id",keytab);
-  console.log('title', keytab?.title)
+
   const titlevalue = keytable?.map((item, i) => {
     return item.title
   })
@@ -213,7 +212,7 @@ export default function DemoCard() {
   const keyFactorData = [
     {
       ico: assest.keyIco1,
-      heading: keytab?.title,
+      heading: 'keytab',
       para: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum standard dummy.'
     },
     {
@@ -265,9 +264,20 @@ export default function DemoCard() {
           <Box sx={{ width: '100%' }}>
             <Box >
               <Tabs value={value} onChange={handleChangeTab} aria-label="basic tabs example">
-                <Tab onClick={() => setHomeId(slugID)} label={titlevalue?.[0]} />
-                <Tab onClick={() => setHomeId(slugID)} label={titlevalue?.[1]} />
-                <Tab onClick={() => setHomeId(slugID)} label={titlevalue?.[2]} />
+                {
+                  keytable?.map(item=>{
+                    return (
+                      <>
+                        
+                      
+                         <Tab onClick={() => setHomeId(`${item._id}`)} label={item.title} />
+                      
+                      </>
+                    )
+                  })
+                }
+             
+           
               </Tabs>
             </Box>
             <CustomTabPanel value={value} index={0}>
@@ -275,7 +285,7 @@ export default function DemoCard() {
                 <Box className="left_card">
                   <List disablePadding onClick={handleChange}>
                     {
-                      keyFactorData?.map((data, index) => (
+                      keytab?.map((data, index) => (
                         <ListItem disablePadding value={index}>
                           <Typography
                             variant="h2"
@@ -283,17 +293,18 @@ export default function DemoCard() {
                           >
                             <Typography variant="caption">
                               <Image
-                                src={data.ico}
-                                alt=""
+                                src={
+                                  `https://aurora.dedicateddevelopers.us/uploads/home_tab_content/${data.logo as string}`}
+                                alt="image"
                                 width={40}
                                 height={40}
                               />
                             </Typography>
-                            {data.heading}
+                            {data.title}
                           </Typography>
                           {cardIndex === index && (
                             <Typography variant="body1">
-                              {data.para}
+                              {data.description.replace(/(<([^>]+)>)/gi, "")}
                             </Typography>
                           )}
                         </ListItem>
@@ -303,7 +314,7 @@ export default function DemoCard() {
                   </List>
                 </Box>
                 <Box className="rgt_card">
-                  {imageArray.map((data, index) => (
+                  {imageArray?.map((data , index) => (
                     <>
                       {cardIndex === index && (
                         <Box className="card_fig">
@@ -320,12 +331,12 @@ export default function DemoCard() {
                 </Box>
               </Stack>
             </CustomTabPanel>
-            <CustomTabPanel value={value} index={1}>
+             {/* <CustomTabPanel value={value} index={1}>
               <Stack direction={"row"} flexWrap='wrap'>
                 <Box className="left_card">
                   <List disablePadding onClick={handleChange}>
                     {
-                      keyFactorData.map((data, index) => (
+                      keytab?.map((data, index) => (
                         <ListItem disablePadding value={index}>
                           <Typography
                             variant="h2"
@@ -333,17 +344,17 @@ export default function DemoCard() {
                           >
                             <Typography variant="caption">
                               <Image
-                                src={data.ico}
+                                src={`https://aurora.dedicateddevelopers.us/uploads/home_content/${data?.logo as string}`}
                                 alt=""
                                 width={40}
                                 height={40}
                               />
                             </Typography>
-                            {data.heading}
+                            {data?.title}
                           </Typography>
                           {cardIndex === index && (
                             <Typography variant="body1">
-                              {data.para}
+                              {data.description.replace(/(<([^>]+)>)/gi, "")}
                             </Typography>
                           )}
                         </ListItem>
@@ -353,12 +364,12 @@ export default function DemoCard() {
                   </List>
                 </Box>
                 <Box className="rgt_card">
-                  {imageArray.map((data, index) => (
+                  {keytab?.map((data, index) => (
                     <>
                       {cardIndex === index && (
                         <Box className="card_fig">
                           <Image
-                            src={data?.images}
+                            src={`https://aurora.dedicateddevelopers.us/uploads/home_content/${data?.image}`}
                             alt="image"
                             width={800}
                             height={800}
@@ -375,7 +386,7 @@ export default function DemoCard() {
                 <Box className="left_card">
                   <List disablePadding onClick={handleChange}>
                     {
-                      keyFactorData.map((data, index) => (
+                      keytab?.map((data, index) => (
                         <ListItem disablePadding value={index}>
                           <Typography
                             variant="h2"
@@ -383,17 +394,17 @@ export default function DemoCard() {
                           >
                             <Typography variant="caption">
                               <Image
-                                src={data.ico}
+                                src={`https://aurora.dedicateddevelopers.us/uploads/home_content/${data?.logo as string}`}
                                 alt=""
                                 width={40}
                                 height={40}
                               />
                             </Typography>
-                            {data.heading}
+                            {data.title}
                           </Typography>
                           {cardIndex === index && (
                             <Typography variant="body1">
-                              {data.para}
+                              {data.description.replace(/(<([^>]+)>)/gi, "")}
                             </Typography>
                           )}
                         </ListItem>
@@ -403,12 +414,12 @@ export default function DemoCard() {
                   </List>
                 </Box>
                 <Box className="rgt_card">
-                  {imageArray.map((data, index) => (
+                  {keytab?.map((data, index) => (
                     <>
                       {cardIndex === index && (
                         <Box className="card_fig">
                           <Image
-                            src={data?.images}
+                            src={`https://aurora.dedicateddevelopers.us/uploads/home_tab_content/${data?.logo}`}
                             alt="image"
                             width={800}
                             height={800}
@@ -420,7 +431,7 @@ export default function DemoCard() {
                 </Box>
               </Stack>
 
-            </CustomTabPanel>
+            </CustomTabPanel>  */}
           </Box>
 
         </Box>

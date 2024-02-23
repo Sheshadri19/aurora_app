@@ -4,6 +4,8 @@ import { endpoints } from "../endpoints";
 import { RootDemo } from "@/interface/demointerface";
 import { keyfactorInt } from "@/interface/keyfactorinter";
 import { keytabinter } from "@/interface/keyfactortabinter";
+import axios from "axios";
+import { Rootclient } from "@/interface/clientinter";
 
 
 export const homebannerfunc=async()=>{
@@ -56,12 +58,21 @@ export const homebannerfunc=async()=>{
  }
  
 
-//  export const keywordIDfunc=async(id:string)=>{
-//     const res=await axiosInstance.get<keytabinter>(
-//         endpoints.pageEnd.keyfactorIdend
-//     )
+ export const keywordIDfunc=async(id:string)=>{
+    const res=await axiosInstance.get<keytabinter>(
+        endpoints.pageEnd.keyfactorIdend(id)
+    )
 
-//     console.log("key tab ",res.data.data);
-//     return res.data.data
+    console.log("key tab ",res.data.data);
+    return res.data.data
     
-//  }
+ }
+
+
+ export const clientfunc=async()=>{
+    const res=await axiosInstance.get<Rootclient>(
+        endpoints.pageEnd.clientfeedbackend
+    )
+    console.log("client feedback ",res.data.data);
+    return res.data.data
+ }

@@ -6,6 +6,8 @@ import assest from '@/json/assest'
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { useQuery } from 'react-query'
+import { clientfunc } from '@/api/functions/allfunc'
 const ClientfeedWrapper = styled(Box)`
 padding: 80px 0;
 @media(max-width: 1199px){
@@ -122,6 +124,17 @@ const sliderdetails = [
     },
 ]
 export default function ClientFeedslider() {
+
+const {data}=useQuery({
+   
+    queryKey:['cf'],
+    queryFn:clientfunc
+
+})
+
+console.log("client feed",data);
+
+    
   return (
     <ClientfeedWrapper>
         <Box className="cientfeedback-sec">
@@ -129,9 +142,9 @@ export default function ClientFeedslider() {
                 <CommonHeadingTittle tittletxt="Client Feedback" subTxt="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book" />
                 <Box className="clientfed-slider">
                     <Slider {...sliderSettings}>
-                        {sliderdetails.map((item, index) => (
+                        {data?.map((item, index) => (
                         <Box className="singlewrapslider">
-                            <SingleclientFdbck clientimg={item.clientprf} clientname={item.clinetnam} clientstart={item.clientrtnst} clintmsg={item.clinetmsg} />
+                            <SingleclientFdbck clientimg={item.image} clientname={item.name} clientstart={item.description} clintmsg={item.status} />
                         </Box>
                         ))}
                     

@@ -1,16 +1,15 @@
-export interface keytabinter {
+export interface Rootclient {
     status: number
-    data: TabDaum[]  
+    data: Daum[]
     message: string
   }
   
-  export interface TabDaum {
+  export interface Daum {
     _id: string
-    home_tab_id: string
-    title: string
-    logo: string
-    description: string
+    name: string
     image: string
+    description: string
+    rating: number
     status: string
     isDeleted: boolean
     createdAt: string

@@ -60,28 +60,39 @@ const KeyCardWrap = styled(Box)`
     }
 `
 
-interface keyCradProps{
-    ico: string,
-    heading: string,
-    para: string
+// interface keyCradProps{
+//     ico: string,
+//     heading: string,
+//     para: string
+// }
+
+
+interface keyprops{
+    home_tab_id:string
+    title:string,
+    logo:string,
+    description:string
+
 }
 
-export default function KeyCard(props: keyCradProps) {
+export default function KeyCard(props: keyprops) {
+
+ 
   return (
     <KeyCardWrap className='key-card'>
         <Box className="ico">
             <Image
-                src={props.ico}
+                src={props.title}
                 width={40}
                 height={40}
                 alt=''
             />
         </Box>
         <Typography variant='h3'>
-            {props.heading}
+            {props.logo}
         </Typography> 
          <Typography variant='body2'>
-            {props.para}
+            {props.description}
         </Typography>
     </KeyCardWrap>
   )

@@ -65,9 +65,12 @@ const KeyFactorsWrap = styled(Box)`
 
 export default function KeyFactors() {
 
+
+
+
   const keyFactorData = [
     {
-        ico: assest.keyIco1,
+        title: assest.keyIco1,
         heading: 'Make an impression',
         para: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum standard dummy.'
     },
@@ -101,11 +104,13 @@ export default function KeyFactors() {
                         keyFactorData.map((data)=> (
                             <Grid item lg={6} md={6} xs={12}>
                                 
-                                    <KeyCard
+                                    {/* <KeyCard
                                         ico={data.ico}
                                         heading={data.heading}
                                         para={data.para}
-                                    />
+                                    /> */}
+
+
                                 
                             </Grid>
                         ))
