@@ -29,45 +29,46 @@ const AboutProductWrap = styled(Box)`
 // }
 export default function AboutProduct() {
 
-    const {error,data:bannerHome}=useQuery({
-        queryKey:['banHome'],
-        queryFn:homebannerfunc
-        
-      })
-      console.log("home banner data",bannerHome);
+    const { error, data: bannerHomeData } = useQuery({
+        queryKey: ['banHome'],
+        queryFn: homebannerfunc
+
+    })
+    const bannerHome = bannerHomeData?.data
+    console.log("home banner data", bannerHome);
 
 
-  const aboutData = [
-    {
-        iconUrl: assest.abtIco1,
-        
-        heading: 'Lorem Ipsum is simply dummy text',
-        para: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
-    },
-    {
-        iconUrl: assest.abtIco2,
-        
-        heading: 'Lorem Ipsum is simply dummy text',
-        para: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
-    },
-    {
-        iconUrl: assest.abtIco3,
-       
-        heading: 'Lorem Ipsum is simply dummy text',
-        para: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
-    },
-  ]  
+    const aboutData = [
+        {
+            iconUrl: assest.abtIco1,
 
-  return (
-    <AboutProductWrap id="about-sec">
-        <Container fixed>
-            <Box className="section-heading">
-                <CommonHeadingTittle tittletxt={ bannerHome?.section_2_heading as string} subTxt={bannerHome?.section_2_description.replace(/(<([^>]+)>)/gi, "") as string}/>
-            </Box>
-           
-            <Box className="product-content">
-                <Grid container columnSpacing={5} rowSpacing={5}>
-                    {/* { 
+            heading: 'Lorem Ipsum is simply dummy text',
+            para: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
+        },
+        {
+            iconUrl: assest.abtIco2,
+
+            heading: 'Lorem Ipsum is simply dummy text',
+            para: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
+        },
+        {
+            iconUrl: assest.abtIco3,
+
+            heading: 'Lorem Ipsum is simply dummy text',
+            para: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
+        },
+    ]
+
+    return (
+        <AboutProductWrap id="about-sec">
+            <Container fixed>
+                <Box className="section-heading">
+                    <CommonHeadingTittle tittletxt={bannerHome?.section_2_heading as string} subTxt={bannerHome?.section_2_description.replace(/(<([^>]+)>)/gi, "") as string} />
+                </Box>
+
+                <Box className="product-content">
+                    <Grid container columnSpacing={5} rowSpacing={5}>
+                        {/* { 
                         aboutData.map((data)=> (
                             <Grid item lg={4} md={4} xs={12}>
                                 <AboutCard 
@@ -78,30 +79,30 @@ export default function AboutProduct() {
                             </Grid>
                         ))
                     } */}
-                    <Grid item lg={4} md={4} xs={12}>
-                                <AboutCard 
-                                    iconUrl={`https://aurora.dedicateddevelopers.us/uploads/home_content/${bannerHome?.section_2_icon_1 as string}`}
-                                    heading={bannerHome?.section_2_title_1 as string}
-                                    para={bannerHome?.section_2_text_1 as string}
-                                />
-                            </Grid>
-                            <Grid item lg={4} md={4} xs={12}>
-                                <AboutCard 
-                                    iconUrl={`https://aurora.dedicateddevelopers.us/uploads/home_content/${bannerHome?.section_2_icon_2 as string}`}
-                                    heading={bannerHome?.section_2_title_1 as string}
-                                    para={bannerHome?.section_2_text_1 as string}
-                                />
-                            </Grid>
-                            <Grid item lg={4} md={4} xs={12}>
-                                <AboutCard 
-                                    iconUrl={`https://aurora.dedicateddevelopers.us/uploads/home_content/${bannerHome?.section_2_icon_3 as string}`}
-                                    heading={bannerHome?.section_2_title_1 as string}
-                                    para={bannerHome?.section_2_text_1 as string}
-                                />
-                            </Grid>
-                </Grid>
-            </Box>
-        </Container>
-    </AboutProductWrap>
-  )
+                        <Grid item lg={4} md={4} xs={12}>
+                            <AboutCard
+                                iconUrl={`https://aurora.dedicateddevelopers.us/uploads/home_content/${bannerHome?.section_2_icon_1 as string}`}
+                                heading={bannerHome?.section_2_title_1 as string}
+                                para={bannerHome?.section_2_text_1 as string}
+                            />
+                        </Grid>
+                        <Grid item lg={4} md={4} xs={12}>
+                            <AboutCard
+                                iconUrl={`https://aurora.dedicateddevelopers.us/uploads/home_content/${bannerHome?.section_2_icon_2 as string}`}
+                                heading={bannerHome?.section_2_title_1 as string}
+                                para={bannerHome?.section_2_text_1 as string}
+                            />
+                        </Grid>
+                        <Grid item lg={4} md={4} xs={12}>
+                            <AboutCard
+                                iconUrl={`https://aurora.dedicateddevelopers.us/uploads/home_content/${bannerHome?.section_2_icon_3 as string}`}
+                                heading={bannerHome?.section_2_title_1 as string}
+                                para={bannerHome?.section_2_text_1 as string}
+                            />
+                        </Grid>
+                    </Grid>
+                </Box>
+            </Container>
+        </AboutProductWrap>
+    )
 }

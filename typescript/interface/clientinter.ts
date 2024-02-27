@@ -1,4 +1,5 @@
 export interface Rootclient {
+    [x: string]: any
     status: number
     data: Daum[]
     message: string

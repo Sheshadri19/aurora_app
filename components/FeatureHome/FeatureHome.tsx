@@ -400,6 +400,9 @@ export default function FeatureHome() {
 
     })
 
+    console.log("features",bannerHome, `https://aurora.dedicateddevelopers.us/uploads/home_content/${bannerHome?.data?.section_4_icon_1}`);
+    
+
     return (
         <FeatureWrap id="homeFeature-sec">
             <Box className="common-gap">

@@ -152,7 +152,7 @@ console.log("client feed",data);
                    
 
                     {
-                        data?.map((item, index) => (
+                        data?.map((item: { image: string; name: string; rating: number; description: string }) => (
                         <Box className="singlewrapslider">
                             <SingleclientFdbck clientimg={`https://aurora.dedicateddevelopers.us/uploads/feedback/${item.image}`} clientname={item.name} clientrating={item?.rating} clintmsg={item.description} />
                         </Box>

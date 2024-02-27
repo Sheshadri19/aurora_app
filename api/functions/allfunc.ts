@@ -16,8 +16,8 @@ export const homebannerfunc=async()=>{
     const res=await axiosInstance.get<BannerHomeRoot>(
      endpoints.pageEnd.homepage
     )
-    console.log("resp home page",res.data);
-    return res.data
+    // console.log("resp home page",res.data);
+    return res as unknown as BannerHomeRoot
     
  }
 

@@ -26,7 +26,7 @@ const CommonHeaddngwrap = styled(Box)`
     }
 `
 interface headingTxtprops{
-    tittletxt: string;
+    tittletxt: string|undefined;
     subTxt: string,
     isWhite?: boolean,
 }
