@@ -142,10 +142,10 @@ export default function  Banner() {
           <Grid item md={6} xs={12}>
             <Box className="banner_left">
               <Typography variant="h1">
-          {bannerHome?.section_1_heading}
+          {bannerHome?.data?.section_1_heading}
               </Typography>
               <Typography variant="body1">
-            {bannerHome?.section_1_description}
+            {bannerHome?.data?.section_1_description}
               </Typography>
               <Stack direction={"row"} className="btn_flex">
                 <CustomButton type="button">

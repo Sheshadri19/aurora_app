@@ -1,6 +1,6 @@
 export interface keyfactorInt {
     status: number
-    data: KeyFactorDaum[]
+    data: KeyFactorDaum[] 
     message: string
   }
   

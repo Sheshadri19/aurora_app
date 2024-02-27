@@ -6,6 +6,7 @@ import { Typography } from '@mui/material'
 import Image from 'next/image'
 import { homebannerfunc } from '@/api/functions/allfunc'
 import { useQuery } from 'react-query'
+import { BannerHomeRoot } from '@/interface/homeBanner'
 const FeatureWrap = styled(Box)`
 .common-gap{
     padding: 80px 0;
@@ -398,51 +399,50 @@ export default function FeatureHome() {
         queryFn: homebannerfunc
 
     })
-    console.log("home banner data", bannerHome);
 
     return (
         <FeatureWrap id="homeFeature-sec">
             <Box className="common-gap">
                 <Container>
-                    <CommonHeadingTittle tittletxt={bannerHome?.section_4_heading as string} subTxt={bannerHome?.section_4_description as string} />
+                    <CommonHeadingTittle tittletxt={bannerHome?.data?.section_4_heading as string} subTxt={bannerHome?.data?.section_4_description as string} />
                     <Box className="featuremain-wrap">
                         <Box className="maininnr-wrap-feature">
                             <Box className="commonclmfetr left-feature-txtwrap">
 
                                 <Box className="single-wraptxtLft">
-                                    <i><Image src={`https://aurora.dedicateddevelopers.us/uploads/home_content/${bannerHome?.section_4_icon_1 as string}`} width={26} height={26} alt='icon' /></i>
-                                    <Typography variant='h3'>{bannerHome?.section_4_title_1}</Typography>
-                                    <Typography variant='body1'>{bannerHome?.section_4_text_1}</Typography>
+                                    <i><Image src={`https://aurora.dedicateddevelopers.us/uploads/home_content/${bannerHome?.data?.section_4_icon_1 as string}`} width={26} height={26} alt='icon' /></i>
+                                    <Typography variant='h3'>{bannerHome?.data?.section_4_title_1}</Typography>
+                                    <Typography variant='body1'>{bannerHome?.data?.section_4_text_1}</Typography>
                                 </Box>
 
                                 <Box className="single-wraptxtLft">
-                                    <i><Image src={`https://aurora.dedicateddevelopers.us/uploads/home_content/${bannerHome?.section_4_icon_2 as string}`} width={26} height={26} alt='icon' /></i>
-                                    <Typography variant='h3'>{bannerHome?.section_4_title_2}</Typography>
-                                    <Typography variant='body1'>{bannerHome?.section_4_text_2}</Typography>
+                                    <i><Image src={`https://aurora.dedicateddevelopers.us/uploads/home_content/${bannerHome?.data?.section_4_icon_2 as string}`} width={26} height={26} alt='icon' /></i>
+                                    <Typography variant='h3'>{bannerHome?.data?.section_4_title_2}</Typography>
+                                    <Typography variant='body1'>{bannerHome?.data?.section_4_text_2}</Typography>
                                 </Box>
 
                                 <Box className="single-wraptxtLft">
-                                    <i><Image src={`https://aurora.dedicateddevelopers.us/uploads/home_content/${bannerHome?.section_4_icon_3 as string}`} width={26} height={26} alt='icon' /></i>
-                                    <Typography variant='h3'>{bannerHome?.section_4_title_3}</Typography>
-                                    <Typography variant='body1'>{bannerHome?.section_4_text_3}</Typography>
+                                    <i><Image src={`https://aurora.dedicateddevelopers.us/uploads/home_content/${bannerHome?.data?.section_4_icon_3 as string}`} width={26} height={26} alt='icon' /></i>
+                                    <Typography variant='h3'>{bannerHome?.data?.section_4_title_3}</Typography>
+                                    <Typography variant='body1'>{bannerHome?.data?.section_4_text_3}</Typography>
                                 </Box>
 
                                 <Box className="single-wraptxtLft">
-                                    <i><Image src={`https://aurora.dedicateddevelopers.us/uploads/home_content/${bannerHome?.section_4_icon_4 as string}`} width={26} height={26} alt='icon' /></i>
-                                    <Typography variant='h3'>{bannerHome?.section_4_title_4}</Typography>
-                                    <Typography variant='body1'>{bannerHome?.section_4_text_4}</Typography>
+                                    <i><Image src={`https://aurora.dedicateddevelopers.us/uploads/home_content/${bannerHome?.data?.section_4_icon_4 as string}`} width={26} height={26} alt='icon' /></i>
+                                    <Typography variant='h3'>{bannerHome?.data?.section_4_title_4}</Typography>
+                                    <Typography variant='body1'>{bannerHome?.data?.section_4_text_4}</Typography>
                                 </Box>
 
                                 <Box className="single-wraptxtLft">
-                                    <i><Image src={`https://aurora.dedicateddevelopers.us/uploads/home_content/${bannerHome?.section_4_icon_2 as string}`} width={26} height={26} alt='icon' /></i>
-                                    <Typography variant='h3'>{bannerHome?.section_4_title_5}</Typography>
-                                    <Typography variant='body1'>{bannerHome?.section_4_text_5}</Typography>
+                                    <i><Image src={`https://aurora.dedicateddevelopers.us/uploads/home_content/${bannerHome?.data?.section_4_icon_2 as string}`} width={26} height={26} alt='icon' /></i>
+                                    <Typography variant='h3'>{bannerHome?.data?.section_4_title_5}</Typography>
+                                    <Typography variant='body1'>{bannerHome?.data?.section_4_text_5}</Typography>
                                 </Box>
 
                                 <Box className="single-wraptxtLft">
-                                    <i><Image src={`https://aurora.dedicateddevelopers.us/uploads/home_content/${bannerHome?.section_4_icon_5 as string}`} width={26} height={26} alt='icon' /></i>
-                                    <Typography variant='h3'>{bannerHome?.section_4_title_6}</Typography>
-                                    <Typography variant='body1'>{bannerHome?.section_4_text_6}</Typography>
+                                    <i><Image src={`https://aurora.dedicateddevelopers.us/uploads/home_content/${bannerHome?.data?.section_4_icon_5 as string}`} width={26} height={26} alt='icon' /></i>
+                                    <Typography variant='h3'>{bannerHome?.data?.section_4_title_6}</Typography>
+                                    <Typography variant='body1'>{bannerHome?.data?.section_4_text_6}</Typography>
                                 </Box>
 
                             </Box>

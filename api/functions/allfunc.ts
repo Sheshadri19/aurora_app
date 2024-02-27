@@ -56,8 +56,8 @@ export const homebannerfunc=async()=>{
         endpoints.pageEnd.keyfactorend
     )
 
-    console.log("keyfactors data",res.data.data);
-    return res.data.data
+    console.log("keyfactors data",res.data);
+    return res.data
     
  }
  
@@ -102,8 +102,6 @@ export const homebannerfunc=async()=>{
     return res.data
     
  }
-
-
 
 
 

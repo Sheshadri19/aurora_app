@@ -179,10 +179,12 @@ export default function DemoCard() {
     queryKey: ['keyfactorlists'],
     queryFn: keyfactorfunc,
   })
+  console.log("keytab",keytable);
+  
 
-  const slugID: (string | undefined)[] | undefined= keytable?.map((i: KeyFactorDaum, idx: number) => i?._id)
+  // const slugID: (string | undefined)[] | undefined= keytable?.map((i: KeyFactorDaum, idx: number) => i?._id)
 
-  console.log('id',slugID);
+  // console.log('id',slugID);
   
   const [homeId, setHomeId] = useState("")
   console.log("id",homeId);
@@ -198,9 +200,6 @@ export default function DemoCard() {
 
   // console.log("key tab id",keytab);
 
-  const titlevalue =Array.isArray(keytable) &&  keytable?.map((item, i) => {
-    return item.title
-  })
   const [cardIndex, setCardIndex] = useState(0);
 
   const [value, setValue] = React.useState(0);
