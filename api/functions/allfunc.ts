@@ -4,16 +4,20 @@ import { endpoints } from "../endpoints";
 import { RootDemo } from "@/interface/demointerface";
 import { keyfactorInt } from "@/interface/keyfactorinter";
 import { keytabinter } from "@/interface/keyfactortabinter";
-import axios from "axios";
+
 import { Rootclient } from "@/interface/clientinter";
+import { priceinterroot } from "@/interface/priceinter";
+import { Rootblogall } from "@/interface/blogallinter";
+import { useRouter } from "next/router";
+import { blogdetinter } from "@/interface/blogdetailsinter";
 
 
 export const homebannerfunc=async()=>{
     const res=await axiosInstance.get<BannerHomeRoot>(
      endpoints.pageEnd.homepage
     )
-    console.log("resp home page",res.data.data);
-    return res?.data?.data
+    console.log("resp home page",res.data);
+    return res.data
     
  }
 
@@ -40,8 +44,8 @@ export const homebannerfunc=async()=>{
         }
     )
 
-    console.log("demo data",res.data.data);
-    return res.data.data
+    console.log("demo data",res.data);
+    return res.data
     
  }
 
@@ -63,8 +67,8 @@ export const homebannerfunc=async()=>{
         endpoints.pageEnd.keyfactorIdend(id)
     )
 
-    console.log("key tab ",res.data.data);
-    return res.data.data
+    console.log("key tab ",res.data);
+    return res.data
     
  }
 
@@ -73,6 +77,43 @@ export const homebannerfunc=async()=>{
     const res=await axiosInstance.get<Rootclient>(
         endpoints.pageEnd.clientfeedbackend
     )
-    console.log("client feedback ",res.data.data);
-    return res.data.data
+    console.log("client feedback ",res.data);
+    return res.data
+ }
+
+
+ export const pricingfunc=async()=>{
+    const res : priceinterroot=await axiosInstance.get(
+        endpoints.pageEnd.pricingend
+    )
+
+    console.log("pricing ",res.data);
+    return res.data
+    
+ }
+
+
+ export const allblogfunc=async()=>{
+    const res=await axiosInstance.post<Rootblogall>(
+        endpoints.pageEnd.allblogend
+    )
+
+    console.log("all bl",res.data);
+    return res.data
+    
+ }
+
+
+
+
+
+ export const blogdetailsfunc=async(_id:number | string| undefined)=>{
+
+    const res=await axiosInstance.get<blogdetinter>(
+        endpoints.pageEnd.blogdetend(_id)
+    )
+    console.log("details of blog",res.data);
+    return res.data
+    
+
  }

@@ -12,5 +12,6 @@ export interface keyfactorInt {
     isDeleted?: boolean
     createdAt?: string
     updatedAt?: string
+
   }
   

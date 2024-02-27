@@ -137,21 +137,46 @@ console.log("client feed",data);
     
   return (
     <ClientfeedWrapper>
+
+        
         <Box className="cientfeedback-sec">
+
+            { 
+
+            data?
+            (
             <Container fixed>
                 <CommonHeadingTittle tittletxt="Client Feedback" subTxt="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book" />
                 <Box className="clientfed-slider">
                     <Slider {...sliderSettings}>
-                        {data?.map((item, index) => (
+                   
+
+                    {
+                        data?.map((item, index) => (
                         <Box className="singlewrapslider">
-                            <SingleclientFdbck clientimg={item.image} clientname={item.name} clientstart={item.description} clintmsg={item.status} />
+                            <SingleclientFdbck clientimg={`https://aurora.dedicateddevelopers.us/uploads/feedback/${item.image}`} clientname={item.name} clientrating={item?.rating} clintmsg={item.description} />
                         </Box>
-                        ))}
+                        ))
+                    }
+                
+         
                     
                     </Slider>
                 </Box>
             </Container>
+
+            )
+
+            :(
+                <>
+                
+                </>
+            )
+
+                        }
         </Box>
+
+        
     </ClientfeedWrapper>
   )
 }

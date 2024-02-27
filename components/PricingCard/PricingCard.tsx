@@ -1,3 +1,4 @@
+import { Feature } from '@/interface/priceinter';
 import assest from '@/json/assest';
 import CustomButton from '@/ui/Buttons/CustomButton';
 import styled from '@emotion/styled'
@@ -107,16 +108,20 @@ const PricingCardWrap = styled(Box)`
 `
 
 interface pricingCardProps{
-    heading: string,
-    price: string,
-    options: any[],
+    heading?: string,
+    price?: string,
+    options?: any[],
+    pricing ?: string,
+    features ?: Feature[],
+   
+    // feature_name : Feature["feature_name"]
 }
 interface subProps{
     text: string;
     isCross : boolean
 }
 export default function PricingCard(props: pricingCardProps) {
-    const {heading,price,options} = props;
+    const {heading,price,options, pricing, features} = props;
   return (
     <PricingCardWrap className='pricing-card'>
         <Box className="card-top">
@@ -125,7 +130,7 @@ export default function PricingCard(props: pricingCardProps) {
             </Typography>
             <Box className="pricing-div">
                 <Typography variant='caption'>
-                    $ {price}
+                    $ {pricing}
                 </Typography>
                 <Typography variant='caption'>
                     Per Month
@@ -138,7 +143,7 @@ export default function PricingCard(props: pricingCardProps) {
         <Box className="card-btm">
             <List className='option-list'>
                 {
-                    options.map((option:subProps)=> (
+                    options?.map((option:subProps)=> (
                         <ListItem>
                             <i className='ico'>
                                 <Image
@@ -150,10 +155,25 @@ export default function PricingCard(props: pricingCardProps) {
                             </i>
                             <Typography variant='caption'>
                                 {option.text}
+                              
                             </Typography>
                         </ListItem>
                     ))
                 }
+            <div> 
+
+                
+                {
+                     features?.map(i=>(
+                        <>
+                      
+                        {i.feature_name} <br />
+                        </>
+                     ))
+                }
+         
+                </div>
+            
                
             </List>
             <CustomButton type="button">

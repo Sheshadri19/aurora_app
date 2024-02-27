@@ -198,7 +198,7 @@ export default function DemoCard() {
 
   // console.log("key tab id",keytab);
 
-  const titlevalue = keytable?.map((item, i) => {
+  const titlevalue =Array.isArray(keytable) &&  keytable?.map((item, i) => {
     return item.title
   })
   const [cardIndex, setCardIndex] = useState(0);
@@ -209,28 +209,28 @@ export default function DemoCard() {
     setValue(newValue);
   };
 
-  const keyFactorData = [
-    {
-      ico: assest.keyIco1,
-      heading: 'keytab',
-      para: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum standard dummy.'
-    },
-    {
-      ico: assest.keyIco2,
-      heading: 'Keep it simple',
-      para: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum standard dummy.'
-    },
-    {
-      ico: assest.keyIco3,
-      heading: 'Top-tier support',
-      para: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum standard dummy.'
-    },
-    {
-      ico: assest.keyIco4,
-      heading: 'Software You Can Trust',
-      para: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum standard dummy.'
-    },
-  ]
+  // const keyFactorData = [
+  //   {
+  //     ico: assest.keyIco1,
+  //     heading: 'keytab',
+  //     para: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum standard dummy.'
+  //   },
+  //   {
+  //     ico: assest.keyIco2,
+  //     heading: 'Keep it simple',
+  //     para: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum standard dummy.'
+  //   },
+  //   {
+  //     ico: assest.keyIco3,
+  //     heading: 'Top-tier support',
+  //     para: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum standard dummy.'
+  //   },
+  //   {
+  //     ico: assest.keyIco4,
+  //     heading: 'Software You Can Trust',
+  //     para: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum standard dummy.'
+  //   },
+  // ]
 
   const imageArray = [
     {
@@ -265,7 +265,7 @@ export default function DemoCard() {
             <Box >
               <Tabs value={value} onChange={handleChangeTab} aria-label="basic tabs example">
                 {
-                  keytable?.map(item=>{
+                Array.isArray(keytable) &&  keytable?.map(item=>{
                     return (
                       <>
                         
@@ -284,8 +284,7 @@ export default function DemoCard() {
               <Stack direction={"row"} flexWrap='wrap'>
                 <Box className="left_card">
                   <List disablePadding onClick={handleChange}>
-                    {
-                      keytab?.map((data, index) => (
+                    {  Array.isArray(keytab) && keytab?.map((data, index) => (
                         <ListItem disablePadding value={index}>
                           <Typography
                             variant="h2"

@@ -4,6 +4,9 @@ import { Box } from '@mui/system'
 import React from 'react'
 import CommonHeadingTittle from '../CommonHeadingTittle/CommonHeadingTittle'
 import PricingCard from '../PricingCard/PricingCard'
+import { useQuery } from 'react-query'
+import { pricingfunc } from '@/api/functions/allfunc'
+import { features } from 'process'
 
 const PricingWrap = styled(Box)`
     padding: 80px 0;
@@ -28,123 +31,15 @@ const PricingWrap = styled(Box)`
 
 export default function Pricing() {
 
-  const pricingData = [
-    {
-        heading: 'Basic',
-        price:  '2.99',
-        options: [
-            {
-                text: 'Lorem Ipsum is  dummy text',
-                isCross: true
-            },
-            {
-                text: 'Lorem Ipsum is  dummy text',
-                isCross: true
-            },
-            {
-                text: 'Lorem Ipsum is  dummy text',
-                isCross: false
-            },
-            {
-                text: 'Lorem Ipsum is  dummy text',
-                isCross: false
-            },
-            {
-                text: 'Lorem Ipsum is  dummy text',
-                isCross: false
-            },
-            {
-                text: 'Lorem Ipsum is  dummy text',
-                isCross: false
-            },
-            {
-                text: 'Lorem Ipsum is  dummy text',
-                isCross: false
-            },
-            {
-                text: 'Lorem Ipsum is  dummy text',
-                isCross: false
-            },
-        ]
-    },
-    {
-        heading: 'Premium',
-        price:  '2.99',
-        options: [
-            {
-                text: 'Lorem Ipsum is  dummy text',
-                isCross: false
-            },
-            {
-                text: 'Lorem Ipsum is  dummy text',
-                isCross: false
-            },
-            {
-                text: 'Lorem Ipsum is  dummy text',
-                isCross: false
-            },
-            {
-                text: 'Lorem Ipsum is  dummy text',
-                isCross: false
-            },
-            {
-                text: 'Lorem Ipsum is  dummy text',
-                isCross: false
-            },
-            {
-                text: 'Lorem Ipsum is  dummy text',
-                isCross: false
-            },
-            {
-                text: 'Lorem Ipsum is  dummy text',
-                isCross: false
-            },
-            {
-                text: 'Lorem Ipsum is  dummy text',
-                isCross: false
-            },
-        ]
-    },
-    {
-        heading: 'Standard',
-        price:  '2.99',
-        options: [
-            {
-                text: 'Lorem Ipsum is  dummy text',
-                isCross: true
-            },
-            {
-                text: 'Lorem Ipsum is  dummy text',
-                isCross: false
-            },
-            {
-                text: 'Lorem Ipsum is  dummy text',
-                isCross: false
-            },
-            {
-                text: 'Lorem Ipsum is  dummy text',
-                isCross: false
-            },
-            {
-                text: 'Lorem Ipsum is  dummy text',
-                isCross: false
-            },
-            {
-                text: 'Lorem Ipsum is  dummy text',
-                isCross: false
-            },
-            {
-                text: 'Lorem Ipsum is  dummy text',
-                isCross: false
-            },
-            {
-                text: 'Lorem Ipsum is  dummy text',
-                isCross: false
-            },
-        ]
-    },
+    const {data:pricedata}=useQuery({
+     queryKey:['pr'],
+     queryFn:pricingfunc
+    })
+
+    console.log("pric",pricedata);
     
-  ]  
+
+
 
   return (
     <PricingWrap className='pricing-section'>
@@ -155,13 +50,14 @@ export default function Pricing() {
             <Box className="pricing-wrapper">
                 <Grid container columnSpacing={{lg:3,md:1,sm:1}} rowSpacing={{lg:5,md:3,xs:2}}>
                     {
-                        pricingData.map((pricing)=> (
+                        pricedata?.map((pricing)=> (
                             <Grid item lg={4} md={4} xs={12}>
                                 <PricingCard
-                                
-                                heading={pricing.heading}
-                                price={pricing.price}
-                                options={pricing.options}
+                                key={pricing._id}
+                                heading={pricing.title}
+                                pricing={pricing.monthly_amount}
+                         
+                                features={pricing.features}
                                 />
                             </Grid>
                         ))

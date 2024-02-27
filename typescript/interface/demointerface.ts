@@ -17,5 +17,6 @@ export interface RootDemo {
     _id: string
     createdAt: string
     updatedAt: string
+   
   }
   

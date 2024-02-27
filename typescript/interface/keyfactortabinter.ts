@@ -7,7 +7,7 @@ export interface keytabinter {
   export interface TabDaum {
     _id: string
     home_tab_id: string
-    title: string
+    title: string | number
     logo: string
     description: string
     image: string

@@ -11,8 +11,8 @@ import Wrapper from "@/layout/wrapper/Wrapper";
 import FeatureHome from "@/components/FeatureHome/FeatureHome";
 import BookLiveDemo from "@/components/BookLiveDemo/BookLiveDemo";
 import DemoCard from "@/components/DemoCard/DemoCard";
-import { useQuery } from "react-query";
-import { keyfactorfunc } from "@/api/functions/allfunc";
+
+
 
 
 export default function Home() {

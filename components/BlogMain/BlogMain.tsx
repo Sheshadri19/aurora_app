@@ -1,10 +1,14 @@
+import { mediaUrl } from '@/api/endpoints'
+import { allblogfunc } from '@/api/functions/allfunc'
 import assest from '@/json/assest'
 import CustomButton from '@/ui/Buttons/CustomButton'
 import { Grid, Typography } from '@mui/material'
 import { Box, Container, styled } from '@mui/system'
 import Image from 'next/image'
 import Link from 'next/link'
+import { string } from 'prop-types'
 import React from 'react'
+import { useQuery } from 'react-query'
 
 const BlogmainWraper = styled(Box)`
     .main-blogWrap{
@@ -129,92 +133,99 @@ interface blogwraprops{
 }
 
 const blogdetails = [
-    {
-        blogimg: `${assest.bloglistimg1}`,
-        blogdate: "9 Oct, 2022",
-        blogauthr: "By: Jhon Morrison",
-        blogtittle: "Lorem ipsum is dummy text",
-        blogbtn: `${assest.blogawrsicn}`,
-    },
-    {
-        blogimg: `${assest.bloglistimg2}`,
-        blogdate: "9 Oct, 2022",
-        blogauthr: "By: Jhon Morrison",
-        blogtittle: "Lorem ipsum is dummy text",
-        blogbtn: `${assest.blogawrsicn}`,
-    },
-    {
-        blogimg: `${assest.bloglistimg3}`,
-        blogdate: "9 Oct, 2022",
-        blogauthr: "By: Jhon Morrison",
-        blogtittle: "Lorem ipsum is dummy text",
-        blogbtn: `${assest.blogawrsicn}`,
-    },
-    {
-        blogimg: `${assest.bloglistimg4}`,
-        blogdate: "9 Oct, 2022",
-        blogauthr: "By: Jhon Morrison",
-        blogtittle: "Lorem ipsum is dummy text",
-        blogbtn: `${assest.blogawrsicn}`,
-    },
-    {
-        blogimg: `${assest.bloglistimg1}`,
-        blogdate: "9 Oct, 2022",
-        blogauthr: "By: Jhon Morrison",
-        blogtittle: "Lorem ipsum is dummy text",
-        blogbtn: `${assest.blogawrsicn}`,
-    },
-    {
-        blogimg: `${assest.bloglistimg2}`,
-        blogdate: "9 Oct, 2022",
-        blogauthr: "By: Jhon Morrison",
-        blogtittle: "Lorem ipsum is dummy text",
-        blogbtn: `${assest.blogawrsicn}`,
-    },
-    {
-        blogimg: `${assest.bloglistimg3}`,
-        blogdate: "9 Oct, 2022",
-        blogauthr: "By: Jhon Morrison",
-        blogtittle: "Lorem ipsum is dummy text",
-        blogbtn: `${assest.blogawrsicn}`,
-    },
-    {
-        blogimg: `${assest.bloglistimg4}`,
-        blogdate: "9 Oct, 2022",
-        blogauthr: "By: Jhon Morrison",
-        blogtittle: "Lorem ipsum is dummy text",
-        blogbtn: `${assest.blogawrsicn}`,
-    },
-    {
-        blogimg: `${assest.bloglistimg1}`,
-        blogdate: "9 Oct, 2022",
-        blogauthr: "By: Jhon Morrison",
-        blogtittle: "Lorem ipsum is dummy text",
-        blogbtn: `${assest.blogawrsicn}`,
-    },
-    {
-        blogimg: `${assest.bloglistimg2}`,
-        blogdate: "9 Oct, 2022",
-        blogauthr: "By: Jhon Morrison",
-        blogtittle: "Lorem ipsum is dummy text",
-        blogbtn: `${assest.blogawrsicn}`,
-    },
-    {
-        blogimg: `${assest.bloglistimg3}`,
-        blogdate: "9 Oct, 2022",
-        blogauthr: "By: Jhon Morrison",
-        blogtittle: "Lorem ipsum is dummy text",
-        blogbtn: `${assest.blogawrsicn}`,
-    },
-    {
-        blogimg: `${assest.bloglistimg4}`,
-        blogdate: "9 Oct, 2022",
-        blogauthr: "By: Jhon Morrison",
-        blogtittle: "Lorem ipsum is dummy text",
-        blogbtn: `${assest.blogawrsicn}`,
-    },
+    // {
+    //     blogimg: `${assest.bloglistimg1}`,
+    //     blogdate: "9 Oct, 2022",
+    //     blogauthr: "By: Jhon Morrison",
+    //     blogtittle: "Lorem ipsum is dummy text",
+    //     blogbtn: `${assest.blogawrsicn}`,
+    // },
+    // {
+    //     blogimg: `${assest.bloglistimg2}`,
+    //     blogdate: "9 Oct, 2022",
+    //     blogauthr: "By: Jhon Morrison",
+    //     blogtittle: "Lorem ipsum is dummy text",
+    //     blogbtn: `${assest.blogawrsicn}`,
+    // },
+    // {
+    //     blogimg: `${assest.bloglistimg3}`,
+    //     blogdate: "9 Oct, 2022",
+    //     blogauthr: "By: Jhon Morrison",
+    //     blogtittle: "Lorem ipsum is dummy text",
+    //     blogbtn: `${assest.blogawrsicn}`,
+    // },
+    // {
+    //     blogimg: `${assest.bloglistimg4}`,
+    //     blogdate: "9 Oct, 2022",
+    //     blogauthr: "By: Jhon Morrison",
+    //     blogtittle: "Lorem ipsum is dummy text",
+    //     blogbtn: `${assest.blogawrsicn}`,
+    // },
+    // {
+    //     blogimg: `${assest.bloglistimg1}`,
+    //     blogdate: "9 Oct, 2022",
+    //     blogauthr: "By: Jhon Morrison",
+    //     blogtittle: "Lorem ipsum is dummy text",
+    //     blogbtn: `${assest.blogawrsicn}`,
+    // },
+    // {
+    //     blogimg: `${assest.bloglistimg2}`,
+    //     blogdate: "9 Oct, 2022",
+    //     blogauthr: "By: Jhon Morrison",
+    //     blogtittle: "Lorem ipsum is dummy text",
+    //     blogbtn: `${assest.blogawrsicn}`,
+    // },
+    // {
+    //     blogimg: `${assest.bloglistimg3}`,
+    //     blogdate: "9 Oct, 2022",
+    //     blogauthr: "By: Jhon Morrison",
+    //     blogtittle: "Lorem ipsum is dummy text",
+    //     blogbtn: `${assest.blogawrsicn}`,
+    // },
+    // {
+    //     blogimg: `${assest.bloglistimg4}`,
+    //     blogdate: "9 Oct, 2022",
+    //     blogauthr: "By: Jhon Morrison",
+    //     blogtittle: "Lorem ipsum is dummy text",
+    //     blogbtn: `${assest.blogawrsicn}`,
+    // },
+    // {
+    //     blogimg: `${assest.bloglistimg1}`,
+    //     blogdate: "9 Oct, 2022",
+    //     blogauthr: "By: Jhon Morrison",
+    //     blogtittle: "Lorem ipsum is dummy text",
+    //     blogbtn: `${assest.blogawrsicn}`,
+    // },
+    // {
+    //     blogimg: `${assest.bloglistimg2}`,
+    //     blogdate: "9 Oct, 2022",
+    //     blogauthr: "By: Jhon Morrison",
+    //     blogtittle: "Lorem ipsum is dummy text",
+    //     blogbtn: `${assest.blogawrsicn}`,
+    // },
+    // {
+    //     blogimg: `${assest.bloglistimg3}`,
+    //     blogdate: "9 Oct, 2022",
+    //     blogauthr: "By: Jhon Morrison",
+    //     blogtittle: "Lorem ipsum is dummy text",
+    //     blogbtn: `${assest.blogawrsicn}`,
+    // },
+    // {
+    //     blogimg: `${assest.bloglistimg4}`,
+    //     blogdate: "9 Oct, 2022",
+    //     blogauthr: "By: Jhon Morrison",
+    //     blogtittle: "Lorem ipsum is dummy text",
+    //     blogbtn: `${assest.blogawrsicn}`,
+    // },
 ]
 export default function BlogMain(props: blogwraprops) {
+
+    const{data:allb}=useQuery({
+      queryKey:['alb'],
+      queryFn:allblogfunc
+    })
+    console.log("all blogs",allb);
+    
   return (
     <BlogmainWraper>
         <Box className="main-blogWrap">
@@ -224,23 +235,22 @@ export default function BlogMain(props: blogwraprops) {
                 </Box>
                 <Box className="mainblog-listwrap">
                     <Grid container spacing={{ xs: 3, md: 4 }} columns={{ xs: 4, sm: 8, md: 12 }}>
-                        {blogdetails.map((item, index) => (
+
+   {Array.isArray(allb) &&  allb?.map((item,index) => (
                             <Grid item xs={8} sm={4} md={3} key={index}>
                                 <Box className="singleblogWrap">
                                     <figure>
-                                        <Link href='/blog-details'>
-                                        <Image src={item.blogimg} width={263} height={198} alt='blogimage'/>
+                                        <Link href={`/blog-details/${item?._id}`}>
+                                        <Image src={mediaUrl(`blog/${item.image as string}`)} width={263} height={198} alt='blogimage'/>
                                         </Link>
                                     </figure>
-                                    <Box className="blogdate">
-                                        <Typography variant='caption'>{item.blogdate}</Typography>
-                                    </Box>
+                               
                                     <Box className="blogtxtwrap">
-                                        <Typography variant='caption'>{item.blogauthr}</Typography>
+                                        <Typography variant='caption'>{item.author}</Typography>
                                         <Typography variant='body1'>
-                                            <Link href='/blog-details'>{item.blogtittle}</Link>
+                                            <Link href={`/blog-details/${item?._id}`}>{item.title}</Link>
                                         </Typography>
-                                        <Link className="blogbtnwrap" href='/blog-details'><Image src={item.blogbtn} width={18} height={9} alt='bloglink-image'/></Link>
+                                        <Link className="blogbtnwrap" href={`/blog-details/${item._id}`}><Image src={item.blogbtn} width={18} height={9} alt='bloglink-image'/></Link>
                                     </Box>
                                 </Box>
                             </Grid>

@@ -28,7 +28,10 @@ export const endpoints = {
 
 
     keyfactorIdend:(id?:string)=>`/home-tab/content/list/${id}`,
-    clientfeedbackend:'/feedback/list'
+    clientfeedbackend:'/feedback/list',
+    pricingend:'/pricing/list',
+    allblogend:'/blog/list',
+    blogdetend:(id:string|number|undefined)=>`/blog/details/${id}`
     
 }
 

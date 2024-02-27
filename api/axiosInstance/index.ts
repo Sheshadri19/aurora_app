@@ -38,7 +38,7 @@ axiosInstance.interceptors.response.use(
       }
     }
 
-    return res;
+    return res?.data;
   },
   async (error: AxiosError<BaseApiResponse>) => {
     globalCatchError(error);

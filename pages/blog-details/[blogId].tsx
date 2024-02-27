@@ -2,9 +2,11 @@
 
 
 import Wrapper from "@/layout/wrapper/Wrapper";
-import BlogDetails from "@/components/BlogDetails/BlogDetails";
+
 import assest from "@/json/assest";
 import RelatedBlog from "@/components/RelatedBlog/RelatedBlog";
+import BlogDetails from "@/components/BlogDetails/BlogDetails";
+
 
 
 

@@ -1,8 +1,11 @@
-import { Grid, Link, Typography } from '@mui/material'
+import { Button, Card, CardActions, CardContent, CardMedia, Grid, Link, Typography } from '@mui/material'
 import { Box, Container, styled } from '@mui/system'
 import Image from 'next/image'
 import React from 'react'
 import assest from '@/json/assest'
+import { useRouter } from 'next/router'
+import { useQuery } from 'react-query'
+import { blogdetailsfunc } from '@/api/functions/allfunc'
 const BlogdetailsWraper = styled(Box)`
     .blog-detailsWrap{
         position: relative;
@@ -176,24 +179,39 @@ interface singleblogprops{
     singleblgtxt: string,
 }
 
-const blogdetails = [
-    {
-        blogimg: `${assest.bloglistimg3}`,
-        blogdate: "9 Oct, 2022",
-        blogauthr: "By: Jhon Morrison",
-        blogtittle: "Lorem ipsum is dummy text",
-        blogbtn: `${assest.blogawrsicn}`,
-    },
-    {
-        blogimg: `${assest.bloglistimg3}`,
-        blogdate: "9 Oct, 2022",
-        blogauthr: "By: Jhon Morrison",
-        blogtittle: "Lorem ipsum is dummy text",
-        blogbtn: `${assest.blogawrsicn}`,
-    },
-]
+// const blogdetails = [
+//     {
+//         blogimg: `${assest.bloglistimg3}`,
+//         blogdate: "9 Oct, 2022",
+//         blogauthr: "By: Jhon Morrison",
+//         blogtittle: "Lorem ipsum is dummy text",
+//         blogbtn: `${assest.blogawrsicn}`,
+//     },
+//     {
+//         blogimg: `${assest.bloglistimg3}`,
+//         blogdate: "9 Oct, 2022",
+//         blogauthr: "By: Jhon Morrison",
+//         blogtittle: "Lorem ipsum is dummy text",
+//         blogbtn: `${assest.blogawrsicn}`,
+//     },
+// ]
 
 export default function BlogDetails(props: singleblogprops) {
+
+    const router=useRouter()
+    const {blogId}=router?.query
+
+ console.log(blogId,"BlogDetails")
+
+    const {data:detBlog}=useQuery({
+        queryKey:['blgd',blogId],
+        queryFn:()=>blogdetailsfunc(blogId as string)
+      
+    })
+
+   console.log("datas",detBlog);
+   
+     
   return (
     <BlogdetailsWraper>
         <Box className="blog-detailsWrap">
@@ -218,7 +236,32 @@ export default function BlogDetails(props: singleblogprops) {
                             <Box className="tittle-latestBlog">
                                 <Typography variant='h2'>Latest</Typography>
                             </Box>
-                            <Box className="singleblogWrp-ltst">
+              
+
+                            <Card sx={{ maxWidth: 345 }}>
+      <CardMedia
+        sx={{ height: 140 }}
+        image={detBlog?.data?.image}
+        title="green iguana"
+      />
+      <CardContent>
+        <Typography gutterBottom variant="h5" component="div">
+          {detBlog?.data?.title}
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          {detBlog?.data?.description}
+        </Typography>
+      </CardContent>
+      <CardActions>
+        <Button size="small">Share</Button>
+        <Button size="small">Learn More</Button>
+      </CardActions>
+    </Card>
+                            
+                          
+
+
+                            {/* <Box className="singleblogWrp-ltst">
                                 {blogdetails.map((item, index) => (
                                     <Box className="singleblogWrap">
                                         <figure>
@@ -238,7 +281,9 @@ export default function BlogDetails(props: singleblogprops) {
                                         </Box>
                                     </Box>
                                 ))}
-                            </Box>
+                            </Box> */}
+
+
                         </Box>
                     </Grid>
                 </Grid>

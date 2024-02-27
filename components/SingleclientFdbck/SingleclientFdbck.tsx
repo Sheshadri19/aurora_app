@@ -1,4 +1,4 @@
-import { Typography } from '@mui/material'
+import { Rating, Typography } from '@mui/material'
 import { Box, styled } from '@mui/system'
 import Image from 'next/image'
 import React from 'react'
@@ -33,10 +33,12 @@ const SinglewrapcrtFeed = styled(Box)`
 interface clientfeedProps{
     clientimg: string,
     clientname: string,
-    clientstart: string,
+    clientrating:number,
     clintmsg: string,
 }
 export default function SingleclientFdbck(props: clientfeedProps) {
+
+    const [value, setValue] = React.useState<number | null>(2);
   return (
     <SinglewrapcrtFeed>
         <Box className="mainwrap-singlcrtfeed">
@@ -45,7 +47,23 @@ export default function SingleclientFdbck(props: clientfeedProps) {
                 <Box className="clientnameStart">
                     <Typography variant='caption'>{props.clientname}</Typography>
                     <Box className="star-rating">
-                        <Image src={props.clientstart} width={108} height={16} alt='starticon'/>
+                    <Box
+      sx={{
+        '& > legend': { mt: 2 },
+      }}
+    >
+      <Typography component="legend">Rating</Typography>
+      <Rating
+   
+        name="simple-controlled"
+        value={props.clientrating}
+        onChange={(event, newValue) => {
+          setValue(newValue);
+        }}
+      />
+    
+
+    </Box>
                     </Box>
                 </Box>
             </Box>
